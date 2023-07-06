@@ -15,7 +15,7 @@ class InstalledFileManager
         file_put_contents(storage_path('installed'), '');
 
         $result = file_get_contents(base_path('.env'));
-        $newLine = $result."SESSION_DRIVER=database\n";
+        $newLine = $result."SESSION_DRIVER=file\n";
         file_put_contents(base_path('.env'), $newLine);
         Artisan::call('storage:link');
     }
