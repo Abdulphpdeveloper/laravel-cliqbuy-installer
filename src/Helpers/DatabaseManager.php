@@ -15,25 +15,14 @@ class DatabaseManager
      */
     public function migrateAndSeed()
     {
-        return $this->migrate();
+        return $this->seed();
     }
 
     /**
      * Run the migration and call the seeder.
      *
      * @return array
-     */
-    private function migrate()
-    {
-        try{
-            Artisan::call('migrate');
-        }
-        catch(Exception $e){
-            return $this->response($e->getMessage());
-        }
-
-        return $this->seed();
-    }
+     */  
 
     /**
      * Seed the database.
@@ -42,6 +31,7 @@ class DatabaseManager
      */
     private function seed()
     {
+       ini_set('max_execution_time', 300);
         try{
             Artisan::call('db:seed');
         }
