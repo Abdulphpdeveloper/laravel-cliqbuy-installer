@@ -18,6 +18,7 @@ class InstalledFileManager
         $newLine = $result."SESSION_DRIVER=file\n";
         file_put_contents(base_path('.env'), $newLine);
         Artisan::call('storage:link');
+        Artisan::call('passport:install');
     }
 
     /**
